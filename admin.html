@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<html>
+
+
+
+<head>
+
+		<link rel="stylesheet" href="style/main.css" type="text/css">
+    
+		<link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
+
+		<title> Basketball </title>
+
+		<meta charset ="utf-8">
+
+</head>
+
+
+<body>
+
+    <header>
+		<a href="index.html?room=" id="back" class="back-arrow"> <img src="img/back.png" alt="Verlassen"></a>
+	</header>
+
+    <h1 id="RoomID"> Raum ID: </h1>
+
+  	<div class="form">
+
+        <button class="sub" onclick="window.location='./createPlayers.html?room='+this.href"> Spieler Erstellen </button>
+
+        <button class="sub" onclick="window.location='./removePlayers.html?room='+this.href"> Spieler Entfernen </button>
+
+        <button class="sub" onclick="window.location='./createMatch.html?room='+this.href"> Match Eintragen </button>
+
+	</div>
+
+    <script>
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const roomID = parseInt(urlParams.get("room"));
+        document.getElementById("RoomID").innerHTML += roomID
+        const d = document.getElementsByClassName("sub")
+        for (i = 0; i!=d.length; i++)
+        {
+            d[i].href = roomID
+            console.log(d[i])
+        }
+        document.getElementById("back").href += roomID   
+
+    </script>
+
+
+    
+
+
+</body>
+
+
+</html>

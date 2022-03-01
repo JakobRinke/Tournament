@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html>
+
+
+
+<head>
+
+		<link rel="stylesheet" href="style/main.css" type="text/css">
+    
+		<link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
+
+		<title> Basketball </title>
+
+		<meta charset ="utf-8">
+
+        <script src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/gun/sea.js"></script>
+        <script src="script/api.js"></script>
+
+
+</head>
+
+
+<body>
+    <header>
+		<a href="admin.html?room=" id="back" class="back-arrow"> <img src="img/back.png" alt="Verlassen"></a>
+	</header>
+
+    <h1 id="RoomID"> Raum ID: </h1>
+
+    <div id="gamestate_word" class="form">
+
+        <select name="tProduct" id="Player1" class="inputField2">
+         </select>
+         <input id="Score1" type="text" class="inputField2" autocomplete="off" required placeholder="Punktzahl"/>
+
+         <select name="tProduct" id="Player2" class="inputField2">
+        </select>
+        <input id="Score2" type="text" class="inputField2" autocomplete="off" required placeholder="Punktzahl"/>
+
+        <button class="sub" onclick="addMatch()"> Match Hinzufügen </button>
+
+	</div>
+
+
+
+    <script src="script/match.js"></script>
+
+    
+    <script>
+        document.getElementById("RoomID").innerHTML += roomID
+        document.getElementById("back").href += roomID
+    </script>
+
+
+    
+
+
+</body>
+
+
+</html>

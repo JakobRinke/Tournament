@@ -1,3 +1,4 @@
+
 const PlayerTablePrefab = "<option>[P]</option>"
 
 
@@ -52,17 +53,13 @@ function addMatch()
     const P1 = Player1.value;
     const P2 = Player2.value
     if (P1 == P2) {return; }
-    const S1 = Math.max(parseInt(Score1.value), 1) + matchdamper
-    const S2 = Math.max(parseInt(Score2.value), 1) + matchdamper
 
-    const winner = getWinner(P1, S1, P2, S2)
-    const loser = getLoser(P1, S1, P2, S2)
+    const S1 = Math.max(parseInt(Score1.value), 1)
+    const S2 = Math.max(parseInt(Score2.value), 1)
 
-    const matchVal = 1-Math.min(S1/S2, S2/S1)
+    createMatch(roomID, P1, S1)
+    createMatch(roomID, P2, S2)
 
-    console.log(winner)
-
-    createMatch(roomID, winner, loser, matchVal)
     addMatchPlayed(roomID, P1, P2)
 
 

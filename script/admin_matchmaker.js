@@ -27,10 +27,8 @@ function putInPlayerElo(data, key)
 
 function MatchSaver(P1, P2)
 {
-    console.log(P2)
     SaveMatch(P1, P2);
     SaveMatch(P2, P1);
-    console.log(P1 + " <-> " + P2)
     matchmaker()
 }
 
@@ -67,36 +65,32 @@ function resetDiv()
 
 function matchmaker()
 {
-    resetDiv()
     elo_ordered_keys = OrderElo()
     var i = 0
+    var d = ""
     while (elo_ordered_keys.length > 1)
     {
         i++;
         let next = elo_ordered_keys[0][0]
         elo_ordered_keys.shift()
-        
-        try {
-            let n = findBestPartnerId(next, elo_ordered_keys)
-            var next2 = elo_ordered_keys[n][0]
-            elo_ordered_keys.splice(n, 1)
-        }
-        catch 
-        {
-            console.log("Error1")
-            return;
-        }
-        putInPlayerData(next, next2)
-        if (i==500)
+        let n = findBestPartnerId(next, elo_ordered_keys)
+        var next2 = elo_ordered_keys[n][0]
+        elo_ordered_keys.splice(n, 1)
+        d += PlayerTablePrefab.replace(/\[P1\]/, next).replace(/\[P2\]/, next2)
+        if (i==100)
         {
             return
         }
     }
+    resetDiv()
+    putInPlayerData(d)
+
 }
 
-function putInPlayerData(P1, P2)
+function putInPlayerData(P1)
 {
-    PlayerList.innerHTML += PlayerTablePrefab.replace(/\[P1\]/, P1).replace(/\[P2\]/, P2)
+    PlayerList.innerHTML += P1
+
 }
 
 
@@ -104,11 +98,17 @@ function putInPlayerData(P1, P2)
 
 function findBestPartnerId(next, elo_ordered_keys)
 {
-    for (var i = 0; i < elo_ordered_keys; i++)
+    for (var i = 0; i < elo_ordered_keys.length; i++)
     {
-        if (PlayerMatchMap[next].contains(elo_ordered_keys[i]))
+        try {
+            if (!PlayerMatchMap[next].includes(elo_ordered_keys[i][0]))
+            {
+                return i
+            }
+        }
+        catch (e)
         {
-            return i
+            continue
         }
     }
     return 0

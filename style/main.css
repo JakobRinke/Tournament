@@ -279,7 +279,7 @@ tr:nth-child(even) {
 /*                ------ Mobile ------------- */
 
 @media only screen
-and (max-device-width : 800px)
+and (max-device-width : 900px)
 {
   .inputField 
   {

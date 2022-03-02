@@ -1,4 +1,3 @@
-const matchdamper = 15
 const PlayerTablePrefab = "<option>[P]</option>"
 
 
@@ -64,7 +63,7 @@ function addMatch()
     console.log(winner)
 
     createMatch(roomID, winner, loser, matchVal)
-
+    addMatchPlayed(roomID, P1, P2)
 
 
     Score1.value = ""
@@ -103,3 +102,4 @@ function getLoser(P1, S1, P2, S2)
 
 
 loadAllPlayerElos(roomID, putInPlayerElo)
+
